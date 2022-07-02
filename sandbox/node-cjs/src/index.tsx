@@ -1,10 +1,12 @@
-import { createServer } from "http";
+import { createServer, IncomingMessage, ServerResponse } from "http";
 import { Doc } from "./Doc";
+import { Page } from "./Page";
 import { render } from "baste";
 
 declare global {
   interface BasteContext {
-    url: string;
+    req: IncomingMessage;
+    res: ServerResponse;
     cache: Record<string, any>;
   }
 }
@@ -14,16 +16,22 @@ const cache: BasteContext["cache"] = {};
 const server = createServer(async (req, res) => {
   if (req.url?.includes("favicon")) return res.end("");
 
-  const ctx: BasteContext = {
-    cache,
-    url: req.url || "/",
-  };
-
-  const rendered = await render(ctx, <Doc />);
-
   res.setHeader("content-type", "text/html");
   res.statusCode = 200;
-  res.end(rendered);
+
+  const ctx: BasteContext = {
+    stylesheet: [],
+    cache,
+    req,
+    res,
+  };
+
+  const page = await render(ctx, <Page />);
+  const rendered = await render(ctx, <Doc>{page}</Doc>);
+
+  if (!res.headersSent) {
+    res.end(rendered);
+  }
 });
 
 server.listen(4000, () => {

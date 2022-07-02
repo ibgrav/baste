@@ -6,12 +6,22 @@ export namespace JSX {
   export type Children = Primitive | Component<unknown> | Array<Primitive | Component<unknown>>;
 
   export type Type = string | Component<unknown>;
-  export type Props<P> = P & { children?: Children };
+
+  export type CSS = CSSProperties;
+  export type Attribute = Primitive | Array<Primitive | Attribute> | Record<string, Primitive>;
+
+  export interface InherentProps {
+    children?: Children;
+    className?: Attribute;
+    css?: CSS;
+  }
+
+  export type Props<P> = P & InherentProps;
 
   export type Component<P> = (props: Props<P>, context: BasteContext) => Element | Promise<Element>;
 
   export interface Element {
-    __b: 1;
+    __baste: 1;
     type: Type;
     props: Props<unknown>;
   }
@@ -23,12 +33,8 @@ export namespace JSX {
     >]?: string | number | null | undefined;
   };
 
-  export type AllCSSProperties = {
-    [key: string]: string | number | null | undefined;
-  };
-
-  export interface CSSProperties extends AllCSSProperties, DOMCSSProperties {
-    cssText?: string | null;
+  export interface CSSProperties extends DOMCSSProperties {
+    [attr: `&:${string}`]: CSSProperties;
   }
 
   export interface Attributes {
@@ -67,7 +73,7 @@ export namespace JSX {
     checked?: boolean;
     cite?: string;
     class?: string;
-    className?: string;
+    className?: Attribute;
     cols?: number;
     colSpan?: number;
     content?: string;
@@ -77,6 +83,7 @@ export namespace JSX {
     controlsList?: string;
     coords?: string;
     crossOrigin?: string;
+    css?: CSS;
     data?: string;
     dateTime?: string;
     default?: boolean;

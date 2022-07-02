@@ -1,19 +1,18 @@
 import { template } from "baste";
-import { Heading } from "./Heading";
-import { Profile } from "./Profile";
 
-export const Doc = template(() => {
+export const Doc = template(async ({ children }, { stylesheet }) => {
+  console.log({ stylesheet });
+
   return (
     <>
       {"<!DOCTYPE html>"}
       <html>
-        <head>
+        <head lang="en">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Hello World!</title>
+          <style>{stylesheet.reduce((p, n) => p + n, "")}</style>
         </head>
-        <body className="test">
-          <Heading title="test">Hello world!</Heading>
-          <Profile username="ibgrav" />
-        </body>
+        <body>{children}</body>
       </html>
     </>
   );

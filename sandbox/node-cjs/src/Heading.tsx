@@ -4,10 +4,18 @@ interface HeadingProps {
   title: string;
 }
 
-export const Heading = template<HeadingProps>(({ children }, context) => {
+export const Heading = template<HeadingProps>(({ children, className }, { req }) => {
   return (
-    <h1>
-      {children} - url: {context.url}
+    <h1
+      className={["test", className]}
+      css={{
+        color: "red",
+        "&:hover": {
+          color: "blue",
+        },
+      }}
+    >
+      {children} - url: {req.url}
     </h1>
   );
 });
