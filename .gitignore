@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+
+# Depts
+node_modules
+
+# Build
+dist
+
+/jsx-runtime/*
+!/jsx-runtime/package.json

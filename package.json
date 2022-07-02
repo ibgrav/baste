@@ -1,0 +1,45 @@
+{
+  "name": "baste",
+  "version": "0.0.10",
+  "license": "MIT",
+  "author": "Isaac Graves",
+  "description": "isomorphic javascript templating",
+  "keywords": [
+    "template",
+    "ssr"
+  ],
+  "repository": {
+    "url": "https://github.com/ibgrav/baste"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "jsx-runtime"
+  ],
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "types": "./dist/es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/es/index.d.ts",
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "watch": "yarn build --watch",
+    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "test": "echo \"No test specified\""
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3",
+    "preact": "^10.8.2",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
+}
