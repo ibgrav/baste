@@ -1,5 +1,5 @@
 {
-  "name": "sandbox-node-module",
+  "name": "sandbox-node-es",
   "private": true,
   "type": "module",
   "scripts": {

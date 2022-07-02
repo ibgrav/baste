@@ -18,7 +18,6 @@
     "dist",
     "jsx-runtime"
   ],
-  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/es/index.js",
   "types": "./dist/es/index.d.ts",
@@ -27,6 +26,11 @@
       "types": "./dist/es/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./jsx-runtime": {
+      "types": "./dist/es/jsx-runtime.d.ts",
+      "import": "./dist/es/jsx-runtime.js",
+      "require": "./dist/cjs/jsx-runtime.js"
     }
   },
   "scripts": {
@@ -36,7 +40,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
-    "preact": "^10.8.2",
     "prettier": "^2.7.1",
     "rollup": "^2.75.7",
     "tslib": "^2.4.0",
