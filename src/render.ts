@@ -5,6 +5,7 @@ declare global {
 }
 
 export async function render(context: BasteContext, node: JSX.Element) {
+  console.log({ node });
   return await renderToString(context, node);
 }
 

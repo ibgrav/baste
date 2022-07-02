@@ -8,6 +8,7 @@ declare global {
     type Element = JSXInternal.Element;
     type Component<P> = JSXInternal.Component<P>;
     type Attribute = JSXInternal.Attribute;
+    type Children = JSXInternal.Children;
 
     interface IntrinsicElements extends JSXInternal.IntrinsicElements {}
   }
@@ -22,4 +23,8 @@ export const jsxDev = jsx;
 
 export function Fragment(p: { children: unknown }): JSX.Element {
   return p?.children as JSX.Element;
+}
+
+export function createElement(type: JSX.Type, props: JSX.Props<unknown>, ...children: JSX.Children[]) {
+  return jsx(type, { ...props, children: children as JSX.Children });
 }

@@ -1,5 +1,6 @@
 import type { RollupOptions } from "rollup";
 import typescript from "@rollup/plugin-typescript";
+import { terser } from "rollup-plugin-terser";
 
 const config: Array<RollupOptions> = [
   {
@@ -8,9 +9,14 @@ const config: Array<RollupOptions> = [
     plugins: [typescript({ exclude: ["rollup.config.ts"], compilerOptions: { outDir: "dist/es", declaration: true } })],
   },
   {
-    input: ["src/index.ts", "src/jsx-runtime.ts"],
-    output: [{ format: "cjs", dir: "dist/cjs" }],
-    plugins: [typescript({ exclude: ["rollup.config.ts"], compilerOptions: { noEmit: true } })],
+    input: ["src/index.ts"],
+    output: [{ format: "umd", dir: "dist/umd", name: "baste", inlineDynamicImports: true, minifyInternalExports: true }],
+    plugins: [typescript({ exclude: ["rollup.config.ts"], compilerOptions: { noEmit: true } }), terser()],
+  },
+  {
+    input: ["src/jsx-runtime.ts"],
+    output: [{ format: "umd", dir: "dist/umd", name: "baste", inlineDynamicImports: true, minifyInternalExports: true }],
+    plugins: [typescript({ exclude: ["rollup.config.ts"], compilerOptions: { noEmit: true } }), terser()],
   },
 ];
 
