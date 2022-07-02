@@ -15,6 +15,7 @@ const server = createServer(async (req, res) => {
   if (req.url?.includes("favicon")) return res.end("");
 
   const ctx: BasteContext = {
+    stylesheet: [],
     cache,
     url: req.url || "/",
   };
