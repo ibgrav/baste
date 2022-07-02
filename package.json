@@ -18,7 +18,7 @@
     "dist",
     "jsx-runtime"
   ],
-  "main": "./dist/umd/index.js",
+  "main": "./dist/es/index.js",
   "module": "./dist/es/index.js",
   "types": "./dist/es/index.d.ts",
   "exports": {

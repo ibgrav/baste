@@ -2,20 +2,21 @@ import { createServer } from "http";
 import { Doc } from "./Doc";
 import { render } from "baste";
 
+type Cache = Record<string, any>;
+
 declare global {
   interface BasteContext {
     url: string;
-    cache: Record<string, any>;
+    cache: Cache;
   }
 }
 
-const cache: BasteContext["cache"] = {};
+const cache: Cache = {};
 
 const server = createServer(async (req, res) => {
   if (req.url?.includes("favicon")) return res.end("");
 
   const ctx: BasteContext = {
-    stylesheet: [],
     cache,
     url: req.url || "/",
   };

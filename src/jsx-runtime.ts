@@ -9,6 +9,7 @@ declare global {
     type Component<P> = JSXInternal.Component<P>;
     type Attribute = JSXInternal.Attribute;
     type Children = JSXInternal.Children;
+    type Primitive = JSXInternal.Primitive;
 
     interface IntrinsicElements extends JSXInternal.IntrinsicElements {}
   }

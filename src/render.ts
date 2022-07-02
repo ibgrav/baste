@@ -1,75 +1,50 @@
 declare global {
-  interface BasteContext {
-    stylesheet: Array<string>;
-  }
+  interface BasteContext {}
 }
 
-let number = "number";
-let string = "string";
-let object = "object";
-let boolean = "boolean";
-let func = "function";
-
 export async function render(context: BasteContext, node: JSX.Element) {
-  return await renderToString(context, node);
+  return renderToString(context, node);
 }
 
 export async function renderToString(context: BasteContext, node: unknown): Promise<string> {
-  if (Array.isArray(node)) {
-    let promises = node.map((n) => renderToString(context, n));
-    return (await Promise.all(promises)).reduce((p, n) => p + n, "");
-  }
+  return primitiveToString(node, async (node) => {
+    if (Array.isArray(node)) {
+      const promises = node.map((n) => renderToString(context, n));
+      return (await Promise.all(promises)).reduce((p, n) => p + n, "");
+    }
 
-  let type = typeof node;
+    if (typeof node === "object") {
+      const { __baste, type, props } = node as JSX.Element;
 
-  if (type === boolean) return "";
-  if (type === number) return String(node);
-  if (type === string) return node as string;
-  if (!node) return "";
+      if (__baste === 1 && type && props) {
+        if (typeof type === "string") {
+          const attributes = await renderProps(props);
+          const children = await renderToString(context, props.children);
 
-  if (type === object) {
-    let { __baste, type, props } = node as JSX.Element;
-
-    if (__baste === 1 && type && props) {
-      if (typeof type === "string") {
-        if (props.css) {
-          let className = renderStylesheet(context, props.css);
-
-          if (props.className) {
-            if (Array.isArray(props.className)) props.className.push(className);
-            if (typeof props.className === string) props.className += ` ${className}`;
-            if (typeof props.className === object) (props.className as Record<string, any>)[className] = true;
-          } else {
-            props.className = className;
-          }
+          return `<${type}${attributes}>${children}</${type}>`;
         }
 
-        let attributes = renderProps(props);
-        let children = await renderToString(context, props.children);
-
-        return `<${type}${attributes}>${children}</${type}>`;
-      }
-
-      if (typeof type === func) {
-        try {
-          let newnode = await type(props, context);
-          return renderToString(context, newnode);
-        } catch (e) {
-          throw new Error("baste render error");
+        if (typeof type === "function") {
+          try {
+            const newnode = await type(props, context);
+            return renderToString(context, newnode);
+          } catch (e) {
+            throw new Error("baste render error");
+          }
         }
       }
     }
-  }
 
-  return "";
+    return "";
+  });
 }
 
-function renderProps(props: JSX.Props<unknown>): string {
+async function renderProps(props: JSX.Props<unknown>): Promise<string> {
   let attributes = "";
 
   for (let [name, attr] of Object.entries(props)) {
     if (name !== "children" && name !== "css") {
-      let value = renderAttribute(attr);
+      const value = await renderAttribute(attr);
 
       if (value) {
         if (name === "className") name = "class";
@@ -81,56 +56,32 @@ function renderProps(props: JSX.Props<unknown>): string {
   return attributes;
 }
 
-function renderAttribute(attr: JSX.Attribute): string {
-  if (attr === null) return "";
-  if (attr === undefined) return "";
-
-  let type = typeof attr;
-
-  if (type === boolean) return "";
-  if (type === string) return attr as string;
-  if (type === number) return String(attr);
-
-  if (Array.isArray(attr)) {
-    return attr
-      .map((c) => renderAttribute(c))
-      .filter(Boolean)
-      .join(" ");
-  }
-
-  if (type === object) {
-    let keys = Object.keys(attr).filter((key) => Boolean((attr as Record<string, unknown>)[key]));
-    return renderAttribute(keys);
-  }
-
-  return "";
-}
-
-function renderCss(context: BasteContext, css: JSX.CSS): string {
-  let styles = "";
-
-  for (let [key, val] of Object.entries(css)) {
-    if (key.startsWith("&")) {
-      let style = renderCss(context, val);
-    } else {
-      let value = renderAttribute(val);
-      if (value) styles += `${key}: ${value};`;
+function renderAttribute(attr: JSX.Attribute): Promise<string> {
+  return primitiveToString(attr, (value) => {
+    if (Array.isArray(value)) {
+      return value
+        .map((c) => renderAttribute(c))
+        .filter(Boolean)
+        .join(" ");
     }
-  }
 
-  return styles;
+    if (typeof value === "object") {
+      const keys = Object.keys(value).filter((key) => Boolean(value[key]));
+      return renderAttribute(keys);
+    }
+
+    return "";
+  });
 }
 
-let classNamePrefix = (i: number) => `b${i}`;
-
-function renderStylesheet(context: BasteContext, css: JSX.CSS): string {
-  let styles = renderCss(context, css);
-  let index = context.stylesheet.indexOf(styles);
-
-  if (index === -1) {
-    index = context.stylesheet.length;
-    context.stylesheet.push(`.${classNamePrefix(index)}{${styles}}`);
-  }
-
-  return classNamePrefix(index);
+async function primitiveToString<V>(
+  value: V,
+  fn: (val: Exclude<V, JSX.Primitive>) => string | Promise<string>
+): Promise<string> {
+  if (value === null) return "";
+  if (value === undefined) return "";
+  if (typeof value === "boolean") return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "number") return String(value);
+  return fn(value as Exclude<V, JSX.Primitive>);
 }
