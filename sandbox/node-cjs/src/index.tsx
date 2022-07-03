@@ -1,7 +1,7 @@
 import { createServer, IncomingMessage, ServerResponse } from "http";
 import { Doc } from "./Doc";
 import { Page } from "./Page";
-import { render } from "baste";
+import { renderToString } from "baste";
 import { h } from "baste/jsx-runtime";
 import { setup } from "goober";
 
@@ -31,8 +31,8 @@ const server = createServer(async (req, res) => {
     res,
   };
 
-  const page = await render(ctx, <Page />);
-  const rendered = await render(ctx, <Doc>{page}</Doc>);
+  const page = await renderToString(ctx, <Page />);
+  const rendered = await renderToString(ctx, <Doc>{page}</Doc>);
 
   if (!res.headersSent) {
     res.end(rendered);

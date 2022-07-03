@@ -1,6 +1,6 @@
 import { createServer } from "http";
 import { Doc } from "./Doc";
-import { render } from "baste";
+import { renderToString } from "baste";
 
 type Cache = Record<string, any>;
 
@@ -21,7 +21,7 @@ const server = createServer(async (req, res) => {
     url: req.url || "/",
   };
 
-  const rendered = await render(ctx, <Doc />);
+  const rendered = await renderToString(ctx, <Doc />);
 
   res.setHeader("content-type", "text/html");
   res.statusCode = 200;

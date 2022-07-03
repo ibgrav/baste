@@ -11,7 +11,7 @@ const Doc = defineComponent(() => {
         <title>Test!</title>
       </head>
       <body>
-        <h1>Hello World change 2</h1>
+        <h1>Hello World change 3</h1>
       </body>
     </html>
   );

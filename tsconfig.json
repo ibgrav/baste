@@ -9,12 +9,12 @@
     "jsx": "react-jsx",
     "jsxImportSource": ".",
 
+    "noEmit": true,
     "strict": true,
-    "declaration": true,
     "skipLibCheck": false,
     "isolatedModules": true,
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"]
 }

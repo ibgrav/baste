@@ -4,6 +4,6 @@
   "prettier.printWidth": 128,
   "deno.enable": true,
   "deno.unstable": true,
-  "deno.enablePaths": ["."],
+  "deno.enablePaths": ["netlify"],
   "deno.importMap": ".netlify/edge-functions-import-map.json"
 }

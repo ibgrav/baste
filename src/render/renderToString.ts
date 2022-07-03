@@ -8,6 +8,8 @@ declare global {
 
 export async function renderToString(ctx: BasteContext, node: JSX.Children): Promise<string> {
   return primitiveToString(node, async (node) => {
+    node = await node;
+
     if (Array.isArray(node)) {
       const promises = node.map((n) => renderToString(ctx, n));
       return (await Promise.all(promises)).reduce((p, n) => p + n, "");
@@ -16,7 +18,7 @@ export async function renderToString(ctx: BasteContext, node: JSX.Children): Pro
     if (typeof node === "object") {
       const { __baste, type, props } = node as JSX.Element;
 
-      if (__baste === 1 && type && props) {
+      if (__baste === 1 && typeof props === "object" && type) {
         if (typeof type === "string") {
           const attributes = await propsToString(props);
 

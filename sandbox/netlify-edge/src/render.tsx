@@ -1,4 +1,4 @@
-import { defineComponent, renderToString } from "https://unpkg.com/baste@0.0.15/dist/index.mjs";
+import { defineComponent, renderToString } from "baste";
 
 export async function render() {
   return await renderToString({}, <Doc />);
