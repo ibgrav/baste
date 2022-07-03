@@ -14,19 +14,19 @@
     "dist",
     "jsx-runtime"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.mjs",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.umd.js"
     },
     "./jsx-runtime": {
       "types": "./dist/jsx-runtime.d.ts",
       "import": "./dist/jsx-runtime.mjs",
-      "require": "./dist/jsx-runtime.js"
+      "require": "./dist/jsx-runtime.umd.js"
     }
   },
   "scripts": {

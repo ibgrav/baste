@@ -7,21 +7,21 @@ const config = [
   {
     input: ["src/index.ts"],
     output: [{ format: "es", file: "dist/index.mjs" }],
-    plugins: [terser(), ts({ compilerOptions: { noEmit: true } })],
+    plugins: [ts({ compilerOptions: { noEmit: true } })],
   },
   {
     input: ["src/jsx-runtime.ts"],
     output: [{ format: "es", file: "dist/jsx-runtime.mjs" }],
-    plugins: [terser(), ts({ compilerOptions: { noEmit: true } })],
+    plugins: [ts({ compilerOptions: { noEmit: true } })],
   },
   {
     input: ["src/index.ts"],
-    output: [{ format: "cjs", file: "dist/index.js" }],
+    output: [{ format: "umd", file: "dist/index.umd.js", name: "baste" }],
     plugins: [terser(), ts({ compilerOptions: { noEmit: true } })],
   },
   {
     input: ["src/jsx-runtime.ts"],
-    output: [{ format: "cjs", file: "dist/jsx-runtime.js" }],
+    output: [{ format: "umd", file: "dist/jsx-runtime.umd.js", name: "baste" }],
     plugins: [terser(), ts({ compilerOptions: { noEmit: true } })],
   },
 ];
