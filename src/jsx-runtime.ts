@@ -2,7 +2,6 @@ import { JSX as JSXInternal } from "./types";
 
 declare global {
   namespace JSX {
-    type CSS = JSXInternal.CSS;
     type Type = JSXInternal.Type;
     type Props<P> = JSXInternal.Props<P>;
     type Element = JSXInternal.Element;
@@ -26,6 +25,11 @@ export function Fragment(p: { children: unknown }): JSX.Element {
   return p?.children as JSX.Element;
 }
 
-export function createElement(type: JSX.Type, props: JSX.Props<unknown>, ...children: JSX.Children[]) {
+export function h(type: JSX.Type, props: JSX.Props<unknown>, ...children: JSX.Children[]) {
+  if (props.children) {
+    if (Array.isArray(props.children)) children.push(...props.children);
+    else children.push(props.children);
+  }
+
   return jsx(type, { ...props, children: children as JSX.Children });
 }

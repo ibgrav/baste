@@ -3,11 +3,7 @@
   "version": "0.0.14",
   "license": "MIT",
   "author": "Isaac Graves",
-  "description": "isomorphic javascript templating",
-  "keywords": [
-    "template",
-    "ssr"
-  ],
+  "description": "asynchronous jsx templating",
   "repository": {
     "url": "https://github.com/ibgrav/baste"
   },
@@ -18,28 +14,31 @@
     "dist",
     "jsx-runtime"
   ],
-  "main": "./dist/es/index.js",
-  "module": "./dist/es/index.js",
-  "types": "./dist/es/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/es/index.d.ts",
-      "import": "./dist/es/index.js",
-      "require": "./dist/umd/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./jsx-runtime": {
-      "types": "./dist/es/jsx-runtime.d.ts",
-      "import": "./dist/es/jsx-runtime.js",
-      "require": "./dist/umd/jsx-runtime.js"
+      "types": "./dist/jsx-runtime.d.ts",
+      "import": "./dist/jsx-runtime.mjs",
+      "require": "./dist/jsx-runtime.js"
     }
   },
   "scripts": {
-    "watch": "yarn build --watch",
-    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "dev": "concurrently \"yarn build:rollup --watch\" \"yarn build:tsc --watch\"",
+    "build": "yarn build:rollup && yarn build:tsc",
+    "build:tsc": "tsc --preserveWatchOutput",
+    "build:rollup": "rollup --config rollup.config.js",
     "test": "echo \"No test specified\""
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
+    "concurrently": "^7.2.2",
     "prettier": "^2.7.1",
     "rollup": "^2.75.7",
     "rollup-plugin-terser": "^7.0.2",

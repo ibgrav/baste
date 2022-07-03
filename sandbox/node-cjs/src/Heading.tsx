@@ -1,21 +1,9 @@
-import { template } from "baste";
+import { defineComponent } from "baste";
 
 interface HeadingProps {
   title: string;
 }
 
-export const Heading = template<HeadingProps>(({ children, className }, { req }) => {
-  return (
-    <h1
-      className={["test", className]}
-      css={{
-        color: "red",
-        "&:hover": {
-          color: "blue",
-        },
-      }}
-    >
-      {children} - url: {req.url}
-    </h1>
-  );
+export const Heading = defineComponent<HeadingProps>(({ children, className }, { req }) => {
+  return <h1 className={["test", className]}>{children}</h1>;
 });

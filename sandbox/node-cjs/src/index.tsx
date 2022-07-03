@@ -2,6 +2,10 @@ import { createServer, IncomingMessage, ServerResponse } from "http";
 import { Doc } from "./Doc";
 import { Page } from "./Page";
 import { render } from "baste";
+import { h } from "baste/jsx-runtime";
+import { setup } from "goober";
+
+setup(h);
 
 type Cache = Record<string, any>;
 

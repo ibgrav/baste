@@ -3,17 +3,15 @@
 export namespace JSX {
   export type Primitive = string | number | boolean | null | undefined;
 
-  export type Children = Primitive | Component<unknown> | Array<Primitive | Component<unknown>>;
+  export type Children = Primitive | Element | Array<Primitive | Element>;
 
   export type Type = string | Component<unknown>;
 
-  export type CSS = CSSProperties;
   export type Attribute = Primitive | Array<Primitive | Attribute> | Record<string, Primitive>;
 
   export interface InherentProps {
     children?: Children;
     className?: Attribute;
-    css?: CSS;
   }
 
   export type Props<P> = P & InherentProps;
@@ -83,7 +81,6 @@ export namespace JSX {
     controlsList?: string;
     coords?: string;
     crossOrigin?: string;
-    css?: CSS;
     data?: string;
     dateTime?: string;
     default?: boolean;

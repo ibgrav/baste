@@ -6,6 +6,11 @@ node_modules
 
 # Build
 dist
+.netlify
 
+# Package
 /jsx-runtime/*
 !/jsx-runtime/package.json
+
+# Misc
+*.log*

@@ -1,10 +1,10 @@
 import "./style.css";
-import { template, render } from "baste";
+import { defineComponent, render } from "baste";
 
-export const Main = template(() => {
+export const Main = defineComponent(() => {
   return (
     <>
-      <main className={{ true: true }} css={{ color: "red" }}>
+      <main className={{ true: true }}>
         <h1>Hello Vite!</h1>
         <a href="https://vitejs.dev/guide/features.html" target="_blank">
           Documentation

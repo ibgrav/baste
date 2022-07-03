@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "baste": "link:../../",
+    "goober": "^2.1.10",
     "node-fetch": "cjs"
   },
   "devDependencies": {

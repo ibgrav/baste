@@ -1,14 +1,22 @@
-import { template } from "baste";
+import { defineComponent } from "baste";
+import { styled } from "goober";
 import { Heading } from "./Heading";
 import { Profile } from "./Profile";
 
-export const Page = template(async () => {
+const RedDiv = styled("div")`
+  color: red;
+`;
+
+export const Page = defineComponent(async ({}, ctx) => {
   return (
     <main>
       <Heading className="from-doc" title="test">
-        Hello world!
+        Hello world! {ctx.req.url}
       </Heading>
+      <RedDiv>Should be red</RedDiv>
+      <br />
       <Profile username="ibgrav" />
+      <hr className="border-bottom" />
     </main>
   );
 });

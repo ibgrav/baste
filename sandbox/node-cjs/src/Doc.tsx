@@ -1,7 +1,8 @@
-import { template } from "baste";
+import { defineComponent } from "baste";
+import { extractCss } from "goober";
 
-export const Doc = template(async ({ children }, { stylesheet }) => {
-  console.log({ stylesheet });
+export const Doc = defineComponent(async ({ children }) => {
+  const css = extractCss();
 
   return (
     <>
@@ -10,7 +11,7 @@ export const Doc = template(async ({ children }, { stylesheet }) => {
         <head lang="en">
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Hello World!</title>
-          <style>{stylesheet.reduce((p, n) => p + n, "")}</style>
+          <style id="__goober">{css}</style>
         </head>
         <body>{children}</body>
       </html>

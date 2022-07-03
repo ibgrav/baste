@@ -1,2 +1,2 @@
-export { render } from "./render";
-export { template } from "./template";
+export { renderToString } from "./render/renderToString";
+export { defineComponent } from "./define-component";
