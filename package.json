@@ -1,6 +1,6 @@
 {
   "name": "baste",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "license": "MIT",
   "author": "Isaac Graves",
   "description": "asynchronous jsx templating",
