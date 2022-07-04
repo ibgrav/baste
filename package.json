@@ -37,7 +37,8 @@
     "build:tsc": "tsc --preserveWatchOutput -p tsconfig.build.json",
     "build:rollup": "rollup -c rollup.config.js",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "pub": "yarn build && np"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
