@@ -1,20 +1,20 @@
-import { attributeToString } from "./attributeToString";
+import { attributeToString } from "./attribute-to-string";
 
-export async function propsToString(props: JSX.Props<unknown>): Promise<string> {
+export function propsToString<P>(props: JSX.Props<P>): string {
   let attributes = "";
 
-  await Promise.all(
+  if (typeof props === "object") {
     Object.entries(props).map(async ([name, attr]) => {
       if (name !== "children" && name !== "css") {
-        const value = await attributeToString(attr);
+        const value = attributeToString(attr);
 
         if (value) {
           if (name === "className") name = "class";
           attributes += ` ${name}="${value}"`;
         }
       }
-    })
-  );
+    });
+  }
 
   return attributes;
 }

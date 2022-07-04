@@ -1,9 +1,9 @@
-import { isVoidType } from "./isVoidType";
-import { primitiveToString } from "./primitiveToString";
-import { propsToString } from "./propsToString";
+import { isVoidType } from "./is-void-type";
+import { primitiveToString } from "./primitive-to-string";
+import { propsToString } from "./props-to-string";
 
 declare global {
-  interface BasteContext {}
+  interface BasteContext extends Record<string, unknown> {}
 }
 
 export async function renderToString(ctx: BasteContext, node: JSX.Children): Promise<string> {
@@ -20,7 +20,7 @@ export async function renderToString(ctx: BasteContext, node: JSX.Children): Pro
 
       if (__baste === 1 && typeof props === "object" && type) {
         if (typeof type === "string") {
-          const attributes = await propsToString(props);
+          const attributes = propsToString(props);
 
           if (isVoidType(type)) return `<${type}${attributes}>`;
           else {
@@ -33,9 +33,7 @@ export async function renderToString(ctx: BasteContext, node: JSX.Children): Pro
           try {
             const newnode = await type(props, ctx);
             return renderToString(ctx, newnode);
-          } catch (e) {
-            throw new Error("baste render error");
-          }
+          } catch (e) {}
         }
       }
     }

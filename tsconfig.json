@@ -12,9 +12,10 @@
     "noEmit": true,
     "strict": true,
     "skipLibCheck": false,
+    "noUnusedLocals": true,
     "isolatedModules": true,
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src"]
 }

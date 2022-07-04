@@ -36,8 +36,9 @@ declare global {
       >]?: string | number | null | undefined;
     };
 
+    // add css variable compatibility
     interface CSSProperties extends DOMCSSProperties {
-      [attr: `&:${string}`]: CSSProperties;
+      [attr: `--${string}`]: string;
     }
 
     interface HTMLAttributes<ElementType extends EventTarget = EventTarget> {

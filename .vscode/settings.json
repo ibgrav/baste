@@ -1,9 +1,5 @@
 {
   "editor.formatOnSave": true,
   "prettier.tabWidth": 2,
-  "prettier.printWidth": 128,
-  "deno.enable": true,
-  "deno.unstable": true,
-  "deno.enablePaths": ["netlify/edge-functions"],
-  "deno.importMap": ".netlify/edge-functions-import-map.json"
+  "prettier.printWidth": 128
 }
