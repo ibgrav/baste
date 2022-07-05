@@ -11,7 +11,7 @@ describe("define-component", () => {
   });
 
   it("simple", async () => {
-    const simple = defineComponent(() => {
+    const simple = defineComponent("simple", () => {
       return <div>hello world!</div>;
     });
     assert.isFunction(simple);
@@ -19,7 +19,7 @@ describe("define-component", () => {
   });
 
   it("async", async () => {
-    const asy = defineComponent(async () => {
+    const asy = defineComponent("async", async () => {
       return <>async component</>;
     });
     assert.isFunction(asy);

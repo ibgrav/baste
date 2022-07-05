@@ -19,5 +19,5 @@
     "jsx": "preserve",
     "jsxImportSource": "baste"
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

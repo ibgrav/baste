@@ -16,9 +16,10 @@ describe("props-to-string", () => {
   it("props", async () => {
     const simple = propsToString({
       className: [1, { two: true, no: false }, "three"],
-      test: { test: true },
+      test: { testing: true },
       onclick: "void 0;",
+      bool: true,
     });
-    expect(simple).toEqual(` class="1 two three" test="test" onclick="void 0;"`);
+    expect(simple).toEqual(` class="1 two three" test="testing" onclick="void 0;" bool`);
   });
 });

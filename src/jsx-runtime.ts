@@ -1,5 +1,5 @@
-export function jsx(type: JSX.Type, props: JSX.Props<unknown>): JSX.Element {
-  return { __baste: 1, type: type || "", props: props || {} };
+export function jsx(type: JSX.Type = "", props: JSX.Props<unknown> = {}): JSX.Element {
+  return { __baste: 1, type, props };
 }
 
 export const jsxs = jsx;

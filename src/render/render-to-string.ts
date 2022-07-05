@@ -6,7 +6,7 @@ declare global {
   interface BasteContext extends Record<string, unknown> {}
 }
 
-export async function renderToString(ctx: BasteContext, node: JSX.Children): Promise<string> {
+export async function renderToString(ctx: BasteContext, node: JSX.Children, name?: string): Promise<string> {
   return primitiveToString(node, async (node) => {
     node = await node;
 
@@ -25,6 +25,7 @@ export async function renderToString(ctx: BasteContext, node: JSX.Children): Pro
           if (isVoidType(type)) return `<${type}${attributes}>`;
           else {
             const children = await renderToString(ctx, props.children);
+
             return `<${type}${attributes}>${children}</${type}>`;
           }
         }

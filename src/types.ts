@@ -3,7 +3,13 @@
 export {};
 
 declare global {
-  interface BasteContext {}
+  interface BasteConfig {
+    name?: boolean;
+  }
+
+  interface BasteContext {
+    config?: BasteConfig;
+  }
 
   namespace JSX {
     type Primitive = string | number | boolean | null | undefined;
@@ -17,6 +23,7 @@ declare global {
     interface InherentProps {
       children?: Children;
       className?: Attribute;
+      __n?: string;
     }
 
     type Props<P> = P & InherentProps;
@@ -27,6 +34,7 @@ declare global {
       __baste: 1;
       type: Type;
       props: Props<unknown>;
+      name?: string;
     }
 
     type DOMCSSProperties = {
@@ -228,6 +236,9 @@ declare global {
       onmouseout?: string;
       onkeydown?: string;
       onload?: string;
+
+      // custom attributes
+      jsx?: boolean;
     }
 
     interface SVGAttributes<Target extends EventTarget = SVGElement> extends HTMLAttributes<Target> {

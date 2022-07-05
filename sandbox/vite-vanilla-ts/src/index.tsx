@@ -1,25 +1,46 @@
 import "./style.css";
 import { defineComponent, renderToString } from "baste";
 
-export const Main = defineComponent(() => {
+export const Button = defineComponent("button", () => {
+  return <button>click me!</button>;
+});
+
+export const Main = defineComponent("main", (props, context) => {
   return (
-    <>
-      <main className={{ true: true }}>
-        <h1>Hello Vite!</h1>
-        <div onclick="alert('hello world!');return;" onmouseover="alert('hover!');return;">
-          click me!
-        </div>
-        <a href="https://vitejs.dev/guide/features.html" target="_blank">
-          Documentation
-        </a>
-      </main>
-      <script>{`console.log('hello world';)`}</script>
-    </>
+    <main>
+      <style jsx>{`
+        .test {
+          color: red;
+        }
+      `}</style>
+
+      <Button />
+      <h1 className="test" data-test={true}>
+        hello world!
+      </h1>
+      <Button />
+      <pre>{JSON.stringify({ props, context }, null, 2)}</pre>
+    </main>
   );
 });
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-renderToString({ stylesheet: [] }, <Main />).then((result) => {
+const context: BasteContext = {
+  config: { name: true },
+};
+
+renderToString(context, <Main />).then((result) => {
   app.innerHTML = result;
+  postRender();
 });
+
+function postRender() {
+  const buttons = document.querySelectorAll("[data-baste-button]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      console.log("click!", button);
+    });
+  });
+}
