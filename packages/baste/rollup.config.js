@@ -7,7 +7,7 @@ const config = [
     input: ["src/index.ts", "src/jsx-runtime.ts"],
     output: [
       { format: "es", dir: "dist", entryFileNames: (file) => `${file.name}.es.js` },
-      { format: "cjs", dir: "dist", entryFileNames: (file) => `${file.name}.cjs.js` },
+      { format: "cjs", dir: "dist", entryFileNames: (file) => `${file.name}.cjs.js`, exports: "named" },
     ],
     plugins: [
       typescript({

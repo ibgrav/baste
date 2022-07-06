@@ -1,4 +1,4 @@
-import { defineComponent } from "baste";
+import defineComponent from "baste";
 import { styled } from "goober";
 import { Heading } from "./Heading";
 import { Profile } from "./Profile";

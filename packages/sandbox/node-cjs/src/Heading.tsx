@@ -1,4 +1,4 @@
-import { defineComponent } from "baste";
+import defineComponent from "baste";
 
 interface HeadingProps {
   title: string;

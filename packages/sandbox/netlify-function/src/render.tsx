@@ -1,4 +1,4 @@
-import { defineComponent, renderToString } from "baste";
+import defineComponent, { renderToString } from "baste";
 
 export async function render() {
   return await renderToString({}, <Doc />);

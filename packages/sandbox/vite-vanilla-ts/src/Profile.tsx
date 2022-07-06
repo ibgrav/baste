@@ -1,11 +1,11 @@
-import { defineComponent } from "baste";
+import baste from "baste";
 
 interface ProfileProps {
   username: string;
 }
 
-export const Profile = defineComponent<ProfileProps>("profile", async ({ username }) => {
-  const res = await fetch(`https://xapi.github.com/users/${username}`);
+export const Profile = baste<ProfileProps>("profile", async ({ username }) => {
+  const res = await fetch(`https://api.github.com/users/${username}`);
   const data = await res.json();
 
   return (

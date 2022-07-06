@@ -1,4 +1,4 @@
-import { defineComponent } from "baste";
+import defineComponent from "baste";
 import fetch from "node-fetch";
 
 interface ProfileProps {

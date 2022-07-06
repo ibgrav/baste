@@ -1,12 +1,12 @@
 import "./style.css";
-import { defineComponent, renderToString } from "baste";
+import baste, { renderToString } from "baste";
 import { Profile } from "./Profile";
 
-export const Button = defineComponent("button", () => {
+export const Button = baste("button", () => {
   return <button>click me!</button>;
 });
 
-export const Main = defineComponent("main", (props, context) => {
+export const Main = baste("main", (props, context) => {
   return (
     <main>
       <style jsx>{`

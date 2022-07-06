@@ -11,8 +11,8 @@ export function defineComponent<P>(name: string | JSX.Component<P>, type?: JSX.C
           return element as JSX.Element;
         }
 
-        if (typeof (element as Promise<JSX.Element>).then === "function") {
-          return (element as Promise<JSX.Element>).then((el) => {
+        if (typeof (element as unknown as Promise<JSX.Element>).then === "function") {
+          return (element as unknown as Promise<JSX.Element>).then((el) => {
             el.props.__n = name;
             return el;
           }) as unknown as JSX.Element;

@@ -32,12 +32,11 @@
     }
   },
   "scripts": {
-    "dev": "concurrently \"yarn build:rollup --watch\" \"yarn build:tsc --watch\"",
+    "dev": "pnpm build --watch",
     "build": "rollup -c rollup.config.js"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
-    "concurrently": "^7.2.2",
     "prettier": "^2.7.1",
     "rollup": "^2.75.7",
     "tslib": "^2.4.0",

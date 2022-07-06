@@ -1,5 +1,8 @@
 {
   "name": "@ibgrav/baste",
   "private": true,
-  "packageManager": "pnpm@7.5.0"
+  "packageManager": "pnpm@7.5.0",
+  "scripts": {
+    "run:np": "cd packages/baste && np"
+  }
 }
