@@ -2,4 +2,7 @@ export * from "./types";
 
 export { renderToString } from "./render/render-to-string";
 
-export { defineComponent as default } from "./define-component";
+import { defineComponent as def } from "./define-component";
+
+export default def;
+export const defineComponent = def;
