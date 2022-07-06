@@ -1,5 +1,5 @@
 import { assert, describe, it } from "vitest";
-import { defineComponent } from "./define-component";
+import { defineComponent } from "../../baste/src/define-component";
 
 describe("define-component", () => {
   it("empty", async () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { propsToString } from "./props-to-string";
+import { propsToString } from "../../baste/src/render/props-to-string";
 
 describe("props-to-string", () => {
   it("empty", async () => {

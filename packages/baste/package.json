@@ -1,0 +1,46 @@
+{
+  "name": "baste",
+  "version": "0.0.19",
+  "license": "MIT",
+  "author": "Isaac Graves",
+  "description": "asynchronous jsx templating",
+  "repository": {
+    "url": "https://github.com/ibgrav/baste"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "jsx-runtime"
+  ],
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "default": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./jsx-runtime": {
+      "types": "./dist/jsx-runtime.d.ts",
+      "import": "./dist/jsx-runtime.es.js",
+      "default": "./dist/jsx-runtime.es.js",
+      "require": "./dist/jsx-runtime.cjs.js"
+    }
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn build:rollup --watch\" \"yarn build:tsc --watch\"",
+    "build": "rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3",
+    "concurrently": "^7.2.2",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
+}

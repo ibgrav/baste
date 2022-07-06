@@ -6,7 +6,7 @@
     "build": "tsc --preserveWatchOutput"
   },
   "dependencies": {
-    "baste": "link:../../"
+    "baste": "workspace:*"
   },
   "devDependencies": {
     "@netlify/functions": "^1.0.0",

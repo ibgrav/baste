@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { jsx } from "../jsx-runtime";
-import { renderToString } from "./render-to-string";
+import { jsx } from "../../baste/src/jsx-runtime";
+import { renderToString } from "../../baste/src/render/render-to-string";
 
 describe("render-to-string", () => {
   it("empty", async () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isVoidType } from "./is-void-type";
+import { isVoidType } from "../../baste/src/render/is-void-type";
 
 describe("is-void-type", () => {
   it("empty", async () => {

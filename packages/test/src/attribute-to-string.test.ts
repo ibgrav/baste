@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { attributeToString } from "./attribute-to-string";
+import { attributeToString } from "../../baste/src/render/attribute-to-string";
 
 describe("attribute-to-string", () => {
   it("empty", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { primitiveToString } from "./primitive-to-string";
+import { primitiveToString } from "../../baste/src/render/primitive-to-string";
 
 describe("primitive-to-string", () => {
   it("empty", async () => {

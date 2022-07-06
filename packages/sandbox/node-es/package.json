@@ -6,7 +6,7 @@
     "dev": "tsc-watch --onSuccess \"node --experimental-specifier-resolution=node ./dist/index.js\""
   },
   "dependencies": {
-    "baste": "link:../../",
+    "baste": "workspace:*",
     "node-fetch": "^3.2.6"
   },
   "devDependencies": {

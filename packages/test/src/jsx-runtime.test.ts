@@ -1,5 +1,5 @@
 import { expect, describe, it, assert } from "vitest";
-import * as runtime from "./jsx-runtime";
+import * as runtime from "../../baste/src/jsx-runtime";
 
 describe("jsx-runtime jsx", () => {
   it("empty", async () => {
