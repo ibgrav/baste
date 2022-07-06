@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "Node",
+
+    "outDir": "dist",
+
+    "jsx": "react-jsx",
+    "jsxImportSource": ".",
+
+    "strict": true,
+    "noEmit": true,
+    "declaration": true,
+    "skipLibCheck": false,
+    "noUnusedLocals": true,
+    "isolatedModules": true,
+    "emitDeclarationOnly": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*"]
+}

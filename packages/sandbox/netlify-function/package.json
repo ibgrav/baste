@@ -1,0 +1,15 @@
+{
+  "name": "sandbox-netlify-function",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev -c \"yarn build --watch\"",
+    "build": "tsc --preserveWatchOutput"
+  },
+  "dependencies": {
+    "baste": "workspace:*"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^1.0.0",
+    "typescript": "^4.7.4"
+  }
+}

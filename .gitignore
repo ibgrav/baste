@@ -1,17 +1,13 @@
-# OS
+# os
 .DS_Store
 
-# Depts
+# depts
 node_modules
 
-# Build
+# output
 dist
 .netlify
-coverage
-
-# Package
-/jsx-runtime/*
-!/jsx-runtime/package.json
-
-# Misc
 *.log*
+
+# env
+.env*

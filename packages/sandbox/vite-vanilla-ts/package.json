@@ -1,0 +1,17 @@
+{
+  "name": "sandbox-vite-vanilla-ts",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "baste": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4",
+    "vite": "^2.9.13"
+  }
+}
