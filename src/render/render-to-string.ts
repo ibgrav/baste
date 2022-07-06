@@ -34,7 +34,14 @@ export async function renderToString(ctx: BasteContext, node: JSX.Children, name
           try {
             const newnode = await type(props, ctx);
             return renderToString(ctx, newnode);
-          } catch (e) {}
+          } catch (error) {
+            const stack = (error as Error).stack;
+            console.error("renderToString error");
+            console.error(stack);
+            console.error(node);
+            const style = "color:#ff5151;background:black;padding:8px;";
+            return `<details open style="${style}"><summary>RENDER ERROR</summary><pre>${stack}</pre></details>`;
+          }
         }
       }
     }

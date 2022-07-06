@@ -5,7 +5,7 @@ interface ProfileProps {
   username: string;
 }
 
-export const Profile = defineComponent<ProfileProps>(async ({ username }, { cache }) => {
+export const Profile = defineComponent<ProfileProps>("Profile", async ({ username }, { cache }) => {
   if (!cache[username]) {
     const res = await fetch(`https://api.github.com/users/${username}`);
     cache[username] = await res.json();

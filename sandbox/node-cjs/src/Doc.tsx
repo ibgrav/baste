@@ -1,7 +1,7 @@
 import { defineComponent } from "baste";
 import { extractCss } from "goober";
 
-export const Doc = defineComponent(async ({ children }) => {
+export const Doc = defineComponent("Doc", async ({ children }) => {
   const css = extractCss();
 
   return (

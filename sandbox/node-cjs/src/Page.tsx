@@ -7,7 +7,7 @@ const RedDiv = styled("div")`
   color: red;
 `;
 
-export const Page = defineComponent(async ({}, ctx) => {
+export const Page = defineComponent("Page", async ({}, ctx) => {
   return (
     <main>
       <Heading className="from-doc" title="test">

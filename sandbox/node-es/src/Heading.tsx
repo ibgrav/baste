@@ -4,7 +4,7 @@ interface HeadingProps {
   title: string;
 }
 
-export const Heading = defineComponent<HeadingProps>(({ children }, context) => {
+export const Heading = defineComponent<HeadingProps>("heading", ({ children }, context) => {
   return (
     <h1>
       {children} - url: {context.url}

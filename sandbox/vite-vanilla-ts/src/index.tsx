@@ -1,5 +1,6 @@
 import "./style.css";
 import { defineComponent, renderToString } from "baste";
+import { Profile } from "./Profile";
 
 export const Button = defineComponent("button", () => {
   return <button>click me!</button>;
@@ -20,6 +21,7 @@ export const Main = defineComponent("main", (props, context) => {
       </h1>
       <Button />
       <pre>{JSON.stringify({ props, context }, null, 2)}</pre>
+      <Profile username="ibgrav" />
     </main>
   );
 });
